@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}{{customer.name}}{% endblock %}
+
+{% block content %}
+<div>
+  <h2>Customer Name: {{customer.name}}</h2>
+  <h3>Phone: {{customer.ph}}</h3>
+  <h4>Email: {{customer.email}}</h4>
+  <h5>Address: {{customer.address}}</h5>
+</div>
+
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Payment ID</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Date</th>
+        <th scope="col">Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in payment %}
+      {% if item.status == "live" %}
+      <tr>
+        <th scope="row">{{item.ID}}</th>
+        <td>{{item.amount}}</td>
+        <td>{{item.created_at}}</td>
+        <td>{{item.comment}}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <th scope="row"><del>{{item.ID}}</del></th>
+        <td><del>{{item.amount}}</del></td>
+        <td><del>{{item.created_at}}</del></td>
+        <td><del>{{item.comment}}</del></td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
