@@ -187,7 +187,3 @@ def customerViewPoint(mobnum):
     customer = Customers.query.filter_by(ph=mobnum).first()
     payment = Payment.query.filter_by(customer_id=customer.ID).all()
     return render_template('customerPage.html', customer=customer, payment=payment)
-
-
-if __name__ == '__main__':
-    app.run(debug=False, host="0.0.0.0", port="5000")
